@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Boy Run & Swim Game</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  overflow: hidden;
+}
+
+#gameArea {
+  width: 100%;
+  height: 80vh;
+  position: relative;
+  background: lightgreen;
+  transition: background 1s;
+}
+
+#player {
+  width: 50px;
+  height: 50px;
+  background: red;
+  position: absolute;
+  top: 60%;
+  left: 10px;
+  border-radius: 10px;
+}
+
+#water {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 30%;
+  background: lightblue;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 18px;
+  margin: 10px;
+  cursor: pointer;
+}
+
+#info {
+  font-size: 20px;
+  margin: 10px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>🏃 Boy Run & Swim Game 🏊</h1>
+<div id="info">
+Level: <span id="level">1</span> |
+Time Left: <span id="time">50</span>s
+</div>
+
+<div id="gameArea">
+  <div id="player"></div>
+  <div id="water"></div>
+</div>
+
+<button onclick="startGame()">Start Game</button>
+
+<audio id="sound1" src="https://www.soundjay.com/buttons/sounds/button-3.mp3"></audio>
+<audio id="sound2" src="https://www.soundjay.com/buttons/sounds/button-4.mp3"></audio>
+<audio id="sound3" src="https://www.soundjay.com/buttons/sounds/button-6.mp3"></audio>
+<audio id="sound4" src="https://www.soundjay.com/buttons/sounds/button-7.mp3"></audio>
+<audio id="sound5" src="https://www.soundjay.com/buttons/sounds/button-9.mp3"></audio>
+
+<script>
+let player = document.getElementById("player");
+let gameArea = document.getElementById("gameArea");
+let levelDisplay = document.getElementById("level");
+let timeDisplay = document.getElementById("time");
+
+let level = 1;
+let timeLeft = 50;
+let timer;
+let position = 10;
+
+function startGame() {
+  level = 1;
+  startLevel();
+}
+
+function startLevel() {
+  position = 10;
+  player.style.left = position + "px";
+  timeLeft = 50;
+  levelDisplay.innerText = level;
+  timeDisplay.innerText = timeLeft;
+  changeLevelEffect();
+  playSound();
+
+  clearInterval(timer);
+  timer = setInterval(() => {
+    timeLeft--;
+    timeDisplay.innerText = timeLeft;
+    if (timeLeft <= 0) {
+      clearInterval(timer);
+      if (level < 5) {
+        level++;
+        startLevel();
+      } else {
+        alert("🎉 You completed all 5 Levels!");
+      }
+    }
+  }, 1000);
+}
+
+function changeLevelEffect() {
+  let colors = ["lightgreen", "orange", "purple", "darkblue", "black"];
+  gameArea.style.background = colors[level - 1];
+}
+
+function playSound() {
+  document.getElementById("sound" + level).play();
+}
+
+document.addEventListener("keydown", function(e) {
+  if (e.key === "ArrowRight") {
+    position += 10;
+  }
+  if (e.key === "ArrowLeft") {
+    position -= 10;
+  }
+  if (e.key === "ArrowUp") {
+    player.style.top = "40%"; // jump
+  }
+  if (e.key === "ArrowDown") {
+    player.style.top = "75%"; // swim
+  }
+  player.style.left = position + "px";
+});
+</script>
+
+</body>
+</html>
