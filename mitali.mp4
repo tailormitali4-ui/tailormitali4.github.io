@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday!</title>
+    <style>
+        body { 
+            margin: 0; 
+            padding: 0; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+        }
+        h1 { color: #d81b60; font-size: 2.5rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.1); margin-bottom: 10px; }
+        p { color: #880e4f; font-size: 1.1rem; margin-bottom: 20px; }
+        .video-box {
+            width: 90%;
+            max-width: 350px;
+            background: white;
+            padding: 10px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+        video {
+            width: 100%;
+            border-radius: 15px;
+            display: block;
+        }
+        .footer { margin-top: 30px; font-weight: bold; color: #ad1457; }
+    </style>
+</head>
+<body>
+
+    <h1>Happy Birthday! 🎂✨</h1>
+    <p>Ek pyaara sa surprise aapke liye...</p>
+
+    <div class="video-box">
+        <!-- YAHAN apni video ka sahi naam likho (e.g. video.mp4) -->
+        <video controls autoplay muted>
+            <source src="your-video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <div class="footer">Made with ❤️ for You!</div>
+
+</body>
+</html>
